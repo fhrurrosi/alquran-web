@@ -10,7 +10,6 @@ const page = async ({ params }) => {
   console.log(data.ayat) 
   return (
     <div className='min-h-screen bg-linear-to-br from-emerald-50 to-green-50'>
-      {/* Back Button */}
       <div className='max-w-4xl mx-auto px-4 pt-6'>
         <Link 
           href='/'
@@ -22,8 +21,6 @@ const page = async ({ params }) => {
           Kembali
         </Link>
       </div>
-
-      {/* Header Surah */}
       <div className='max-w-4xl mx-auto px-4 py-8'>
         <div className='bg-linear-to-br from-[#0A400C] to-[#165019] rounded-2xl shadow-2xl p-8 text-center border border-green-800/30'>
           <h1 className='text-5xl md:text-6xl font-bold text-white mb-4' style={{ fontFamily: 'serif' }}>
