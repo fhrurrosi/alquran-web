@@ -7,7 +7,7 @@ const Surah = ({ data }) => {
       {data.map((surah) => (
         <Link 
           key={surah.nomor} 
-          href={`/surah/${surah.nomor}`}
+          href={`/detailsurah/${surah.nomor}`}
           className='group relative flex bg-linear-to-br from-[#0A400C] to-[#165019] p-4 rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border border-green-800/30'
         >
           <div className='flex items-center justify-center w-12 h-12 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 shrink-0'>
