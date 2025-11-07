@@ -7,7 +7,6 @@ const page = async ({ params }) => {
   const result = await response.json()
   const data = result.data
   
-  console.log(data.ayat) 
   return (
     <div className='min-h-screen bg-linear-to-br from-emerald-50 to-green-50'>
       <div className='max-w-4xl mx-auto px-4 pt-6'>
