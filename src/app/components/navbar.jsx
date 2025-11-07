@@ -10,12 +10,11 @@ const Navbar = ({ data }) => {
   return (
     <nav className="sticky top-0 z-50 bg-linear-to-r from-[#0A400C] to-[#165019] shadow-2xl backdrop-blur-md border-b border-white/10">
       <div className="flex flex-col items-center justify-between p-4 max-w-5xl mx-auto gap-3">
-        {/* Judul */}
+  
         <h1 className="font-bold text-3xl text-white tracking-widest drop-shadow-md">
           AL-QURAN
         </h1>
 
-        {/* Input Search */}
         <div className="relative w-full md:w-96">
           <input
             type="text"
