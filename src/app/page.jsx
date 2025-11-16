@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '@/app/components/navbar'
 import Surah from '@/app/components/surah'
-const page = async () => {
+const Page = async () => {
   const respones = await fetch('https://equran.id/api/v2/surat')
   const data = await respones.json()
   return (
@@ -12,4 +12,4 @@ const page = async () => {
   )
 }
 
-export default page
+export default Page

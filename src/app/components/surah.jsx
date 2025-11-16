@@ -2,12 +2,11 @@ import React from 'react'
 import Link from 'next/link'
 
 const Surah = ({ data }) => {
-
   return (
     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4 py-6 max-w-7xl mx-auto'>
       {data.map((surah) => (
-        <Link 
-          key={surah.nomor} 
+        <Link
+          key={surah.nomor}
           href={`/detailsurah/${surah.nomor}`}
           className='group relative flex bg-linear-to-br from-[#0A400C] to-[#165019] p-4 rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border border-green-800/30'
         >
