@@ -1,49 +1,37 @@
 'use client'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-const PageClient = ({ nomorAwal }) => {
-  const [data, setData] = useState([])
-  const [data2, setData2] = useState([])
-  const [data3, setData3] = useState([])
-  const [nomor, setNomor] = useState(Number(nomorAwal))
+import { use, useEffect, useState } from 'react'
+
+const PageClient = ({ nomorSurah }) => {
+  const [nomor, setNomor] = useState(Number(nomorSurah))
+  const [data, setData] = useState(null)
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(`https://equran.id/api/v2/surat/${nomor}`)
-      const result = await response.json()
-      const data = result.data
-      setData(data)
-      if (nomor > 1) {
-        const response2 = await fetch(`https://equran.id/api/v2/surat/${nomor - 1}`)
-        const result2 = await response2.json()
-        const data2 = result2.data
-        setData2(data2)
-      }
-      if (nomor < 114) {
-        const response3 = await fetch(`https://equran.id/api/v2/surat/${nomor + 1}`)
-        const result3 = await response3.json()
-        const data3 = result3.data
-        setData3(data3)
-
-      }
-
-
+      const surah = await response.json()
+      setData(surah.data)
 
     }
     fetchData()
   }, [nomor])
 
-  const handeClickPrev = () => {
-    if (nomor > 1) setNomor(nomor - 1)
-  }
 
-  const handeClickNext = () => {
-    if (nomor < 114) setNomor(nomor + 1)
+  const prevSurah = () => {
+    if (nomor > 1) {
+      setNomor(e => e - 1)
+    }
   }
+  const nextSurah = () =>{
+    if(nomor < 114){
+      setNomor(e => e + 1)
+    }
+  }
+  console.log(data)
   return (
     <>
-      {/* Navbar nanti disini */}
-      <div className='min-h-screen bg-linear-to-br from-emerald-50 to-green-50'>
-        {data && (<>
+      {data && <>
+
+        <div className='min-h-screen bg-linear-to-br from-emerald-50 to-green-50'>
           <div className='max-w-4xl mx-auto px-4 pt-6'>
             <Link
               href='/'
@@ -74,16 +62,15 @@ const PageClient = ({ nomorAwal }) => {
               </div>
             </div>
           </div>
-          <div className='flex justify-between max-w-4xl mx-auto  px-4 py-8'>
-            <button
-              className={` ${nomor === 1 ? "invisible" : null} cursor-pointer bg-linear-to-br from-[#0A400C] to-[#165019] rounded-2xl shadow-2xl p-2 text-center border border-green-800/30 text-white font-bold`} onClick={handeClickPrev}
-            >{data2?.namaLatin}</button>
-            <button className={` ${nomor === 114 ? "invisible" : null} cursor-pointer bg-linear-to-br from-[#0A400C] to-[#165019] rounded-2xl shadow-2xl p-2 text-center border border-green-800/30 text-white font-bold`} onClick={handeClickNext}
-            >{data3?.namaLatin}</button>
+          <div className='flex justify-between max-w-4xl mx-auto mb-3 px-4 py-8'>
+      
+            <button onClick={prevSurah} className='bg-linear-to-br from-[#0A400C] to-[#165019] rounded-2xl shadow-2xl p-2 text-center border border-green-800/30 text-white font-bold'>
+            {data.suratSebelumnya.namaLatin}</button>
+            <button onClick={nextSurah} className='bg-linear-to-br from-[#0A400C] to-[#165019] rounded-2xl shadow-2xl p-2 text-center border border-green-800/30 text-white font-bold'>
+           {data.suratSelanjutnya.namaLatin}</button>
           </div>
-
           <div className='max-w-4xl mx-auto px-4 pb-8 space-y-4'>
-            {data?.ayat?.map((ayat) => (
+            {data.ayat.map((ayat) => (
               <div
                 key={ayat.nomorAyat}
                 className='bg-white rounded-xl shadow-lg hover:shadow-xl transition-all overflow-hidden'
@@ -117,11 +104,10 @@ const PageClient = ({ nomorAwal }) => {
               </div>
             ))}
           </div>
+        </div>
+      </>}
 
 
-        </>)}
-
-      </div>
     </>
   )
 }

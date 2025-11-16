@@ -1,9 +1,12 @@
-import PageClient from "./pageClient"
+import React from 'react'
+import PageClient from './PageClient'
 
-const Page = async ({ params }) => {
+const page = async ({params}) => {
   const {nomor} = await params
-  return <PageClient nomorAwal={nomor} />
-
+  console.log("ini nomor",nomor)
+  return (
+    <PageClient nomorSurah={nomor}></PageClient>
+  )
 }
 
-export default Page
+export default page
